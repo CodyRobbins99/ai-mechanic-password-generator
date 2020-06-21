@@ -3,6 +3,10 @@ var generateBtn = document.querySelector("#generate");
 var passwordString = '';
 var emptyArray = [];
 var passwordLength;
+var lowercaseConfirm;
+var uppercaseConfirm;
+var numbersConfirm;
+var symbolsConfirm;
 
 // Password Length Function 
 var lengthVar = function() {
@@ -22,7 +26,7 @@ var lengthVar = function() {
 
 // Lowercase Letters Function 
 var lowercaseVar = function () {
-  var lowercaseConfirm = confirm("Would you like lowercase letters in your password? Please click 'OK' for yes or 'Cancel' for no.");
+  lowercaseConfirm = confirm("Would you like lowercase letters in your password? Please click 'OK' for yes or 'Cancel' for no.");
 
   if (lowercaseConfirm) {
     alert("Roger that, I'll tell the AI mechanic in charge of building your password to add some lowercase letters!");
@@ -39,7 +43,7 @@ var lowercaseVar = function () {
 
 // Uppercase Letters Function
 var uppercaseVar = function () {
-  var uppercaseConfirm = confirm("How about uppercase letters? Please click 'OK' for yes or 'Cancel' for no.");
+  uppercaseConfirm = confirm("How about uppercase letters? Please click 'OK' for yes or 'Cancel' for no.");
 
   if (uppercaseConfirm) {
     alert("The AI mechanic loves working on uppercase letters, he'll be pleased to hear this!");
@@ -56,7 +60,7 @@ var uppercaseVar = function () {
 
 // Numbers Function 
 var numbersVar = function() {
-  var numbersConfirm = confirm("How do you feel about numbers in your password? Click 'OK' and we'll be sure to add some in. Otherwise, click 'Cancel'.");
+  numbersConfirm = confirm("How do you feel about numbers in your password? Click 'OK' and we'll be sure to add some in. Otherwise, click 'Cancel'.");
 
   if (numbersConfirm) {
     alert("There's nothing an AI mechanic knows better than numbers! Your password is in good hands!");
@@ -73,7 +77,7 @@ var numbersVar = function() {
 
 // Symbols Function
 var symbolsVar = function () {
-  var symbolsConfirm = confirm("Lastly, would you like the AI mechanic to throw in any symbols? You know the deal on 'OK' and 'Cancel' by now.");
+  symbolsConfirm = confirm("Lastly, would you like the AI mechanic to throw in any symbols? You know the deal on 'OK' and 'Cancel' by now.");
 
   if (symbolsConfirm) {
     alert("Wow! You're really making the AI mechanic work until the last minute huh? I'll let him know!");
@@ -114,6 +118,13 @@ function writePassword() {
   for( var i = 0; i < passwordCriteriaArray.length; i++) {
     passwordCriteriaArray[i]();
   }
+  if( uppercaseConfirm === false &&
+    lowercaseConfirm === false &&
+    numbersConfirm === false &&
+    symbolsConfirm === false) {
+    alert("You must click 'OK' on at least one of the password criteria options! Please try again.")
+    writePassword();
+  };
 
   var password = generatePassword();
   var passwordText = document.querySelector("#password");
